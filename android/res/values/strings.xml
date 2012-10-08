@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="app_name">Medek</string>
+    <string name="title_media_detail">Media Detail</string>
+    <string name="title_media_list">Medias</string>
+
+</resources>
