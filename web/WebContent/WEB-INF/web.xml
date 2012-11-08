@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>springhibernate</display-name>
+  <welcome-file-list>   
+  	<welcome-file>/home.jsp</welcome-file>  	 
+  </welcome-file-list>
+  
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+        <param-name>forceEncoding</param-name>
+        <param-value>true</param-value>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    	<param-value>    			
+	    		/WEB-INF/beans/*-context.xml
+	    </param-value>
+  </context-param>
+  
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+		<listener-class>com.devoteam.springhibernate.servlet.SessionListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>SpringServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/Spring-servlet.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>SpringServlet</servlet-name>
+
+	<!-- ping -->
+    <url-pattern>/srv/ping/ping</url-pattern>
+        
+    <!-- user -->
+    <url-pattern>/srv/user/login</url-pattern>
+    <url-pattern>/srv/user/findall</url-pattern>
+    <url-pattern>/srv/user/get</url-pattern>
+    <url-pattern>/srv/user/create</url-pattern>
+    <url-pattern>/srv/user/update</url-pattern>
+    <url-pattern>/srv/user/del</url-pattern>
+        
+    <!-- Test -->
+    <url-pattern>/tester/ping</url-pattern>
+    <url-pattern>/tester/user/new</url-pattern>
+    <url-pattern>/tester/user/login</url-pattern>
+    <url-pattern>/tester/user/chpwd</url-pattern>
+  </servlet-mapping>
+  
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>springhibernateIHMRealm</realm-name>
+    <form-login-config>
+      <form-login-page>/login.jsp</form-login-page>
+      <form-error-page>/login.jsp?Error=true</form-error-page>
+    </form-login-config>
+  </login-config>
+  
+  <servlet>
+    <description></description>
+    <display-name>InitServlet</display-name>
+    <servlet-name>InitServlet</servlet-name>
+    <servlet-class>com.devoteam.springhibernate.servlet.InitServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InitServlet</servlet-name>
+    <url-pattern>/InitServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>LostPasswordServlet</display-name>
+    <servlet-name>LostPasswordServlet</servlet-name>
+    <servlet-class>com.devoteam.springhibernate.servlet.LostPasswordServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LostPasswordServlet</servlet-name>
+    <url-pattern>/identity/forgot</url-pattern>
+  </servlet-mapping>
+</web-app>

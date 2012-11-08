@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<project name="springhibernate" default="build">
+	<property file="build.properties" /> 
+    <property name="revision" value="HEAD" />
+	
+    <taskdef name="junit" className="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask">
+      <classpath>
+        <pathelement location="/mnt/data/tools/junit-4.10.jar"/>
+        <pathelement location="/mnt/data/tools/ant-junit.jar"/>
+      </classpath>
+    </taskdef>
+	
+	<target name="build">
+		
+		<delete dir="${classes}"/>
+		<mkdir dir="${classes}"/>
+		<delete dir="${WebContent}"/>
+		<delete dir="${testReports}"/>
+		<mkdir dir="${testReports}"/>
+		
+		<path id="Tomcat7.libraryclasspath">
+  		 	<fileset dir="${Tomcat}/lib/" includes="**/*.jar"/>
+	    </path>
+  
+		<path id="springhibernate.classpath">
+	        <pathelement location="${classes}"/>
+	        <path refid="Tomcat7.libraryclasspath"/>
+  		 	<fileset dir="../lib/" includes="**/*.jar"/>
+  		 	<fileset dir="${WebContentSrc}/WEB-INF/lib/" includes="**/*.jar"/>
+  		 	<fileset dir="${test}" includes="**/*.xml"/>
+	    </path>
+
+		<javac 	srcdir="${src}" 
+				destdir="${classes}" 
+				debug="yes" 
+				listfiles="no" 
+				includeAntRuntime="false" 
+				fork="true" 
+				memoryMaximumSize="128M" 
+				verbose="no" source="1.6" 
+				target="1.6" 
+				encoding="ISO-8859-1">
+           <classpath refid="springhibernate.classpath"/>
+		</javac>
+
+		<javac 	srcdir="${test}" 
+				destdir="${classes}" 
+				debug="yes" 
+				listfiles="no" 
+				includeAntRuntime="false" 
+				fork="true" 
+				memoryMaximumSize="128M" 
+				verbose="no" source="1.6" 
+				target="1.6" 
+				encoding="ISO-8859-1">
+           <classpath refid="springhibernate.classpath"/>
+		</javac>
+		
+		<copy todir="${classes}">
+  		 	<fileset dir="${mappings}" includes="*.xml"/>
+		</copy>
+		<copy todir="${classes}">
+  		 	<fileset dir="${test}" includes="*.xml"/>
+		</copy>
+		
+		<junit fork="yes" printsummary="yes" haltonfailure="no" showoutput="no">
+			<sysproperty key="log4j.configuration" value="file&#58;/mnt/data/tools/log4j.properties"/>
+			<classpath refid="springhibernate.classpath"/>
+			<formatter type="xml"/>
+			<formatter type="plain"/>
+			<batchtest haltonfailure="no" fork="no" todir="${testReports}">
+				<fileset dir="${classes}">
+					<include name="**/*Test.class" />
+				</fileset>
+			</batchtest>
+		</junit>
+	
+		<copy todir="${WebContent}">
+		    <fileset dir="${WebContentSrc}"/>
+		</copy>
+		
+		<copy todir="${classes}">
+  		 	<fileset dir="${src}" includes="*.properties"/>
+		</copy>
+		
+		<war destfile="${WAR}" webxml="${WebContent}/WEB-INF/web.xml">
+  			<classes dir="${classes}"/>
+  			<fileset dir="${WebContent}"/>
+		</war>
+		
+		
+	</target>
+	
+	
+</project>
