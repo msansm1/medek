@@ -7,11 +7,20 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
  
+    <!-- 
+    ******************************************************
+    ***  Configuration file for unit testing only !!!  ***
+    ****************************************************** 
+    -->
+ 
+ 
+ 
+ 
     <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
  
     <!-- Scans within the base package of the application for @Components to configure as beans -->
     <!-- @Controller, @Service, @Configuration, etc. -->         
-    <context:component-scan base-package="bzh.msansm1.medek" />
+    <context:component-scan base-package="com.devoteam.springhibernate" />
  	 
     <!-- Enables the Spring MVC @Controller programming model -->    
     <mvc:annotation-driven />
@@ -31,24 +40,18 @@
 	<!-- DataSource Definition -->
 	<bean id="dataDB" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName">
-			<value>com.mysql.jdbc.Driver</value>
+			<value>org.h2.Driver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:mysql://localhost/medek</value>
-		</property>
-		<property name="username">
-			<value>medek</value>
-		</property>
-		<property name="password">
-			<value>medek</value>
+			<value>jdbc:h2:mem</value>
 		</property>
 	</bean>
 	<!-- Hibernate SessionFactory Definition -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="mappingResources">
 			<list>
-				<value>../mappings/Database.hbm.xml</value>
-				<value>../mappings/User.hbm.xml</value>
+				<value>Database.hbm.xml</value>
+				<value>User.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

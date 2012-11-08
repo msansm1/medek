@@ -2,15 +2,13 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="com.devoteam.springhibernate.persistence.model">
-	<class name="User" table="user">
+<hibernate-mapping package="bzh.msansm1.medek.persistence.model">
+	<class name="User" table="med_users">
 		<id name="id">
 			<generator class="native" />
 		</id>
 		<property name="login" type="string" length="20" />
 		<property name="password" type="string" length="32" />
-		<property name="lastName" type="string" length="50" />
-		<property name="firstName" type="string" length="50" />
 		<property name="email" type="string" length="100" />
 	</class>
 	    

@@ -3,10 +3,12 @@
                                    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="bzh.msansm1.medek.persistence.model">
-	<class name="Database" table="med_database">
-		<id name="id">
-			<generator class="native" />
-		</id>
-		<property name="version" type="string" length="45" />
+	<class name="Friends" table="med_friends">
+		<composite-id>
+			<key-property name="user"></key-property>
+			<key-property name="friend"></key-property>
+		</composite-id>
+		<property name="isAccepted" type="boolean" />
 	</class>
+	    
 </hibernate-mapping> 

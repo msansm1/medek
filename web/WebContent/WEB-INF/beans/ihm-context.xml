@@ -26,7 +26,7 @@
 		</property>
 	</bean>
 
-	<bean id="ihmCfg" name="ihmCfg" class="com.devoteam.springhibernate.spring.IhmCfg" factory-method="getInstance">	
+	<bean id="ihmCfg" name="ihmCfg" class="bzh.msansm1.medek.spring.IhmCfg" factory-method="getInstance">	
 		<property name="separator" value="${ihm.properties.separator}" />
 		<property name="nameColumn" value="${ihm.properties.nameColumn}" />		
 		

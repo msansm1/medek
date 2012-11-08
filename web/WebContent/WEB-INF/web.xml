@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>springhibernate</display-name>
+  <display-name>medek</display-name>
   <welcome-file-list>   
   	<welcome-file>/home.jsp</welcome-file>  	 
   </welcome-file-list>
@@ -34,7 +34,7 @@
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   <listener>
-		<listener-class>com.devoteam.springhibernate.servlet.SessionListener</listener-class>
+		<listener-class>bzh.msansm1.medek.servlet.SessionListener</listener-class>
   </listener>
   <servlet>
     <servlet-name>SpringServlet</servlet-name>
@@ -80,7 +80,7 @@
     <description></description>
     <display-name>InitServlet</display-name>
     <servlet-name>InitServlet</servlet-name>
-    <servlet-class>com.devoteam.springhibernate.servlet.InitServlet</servlet-class>
+    <servlet-class>bzh.msansm1.medek.servlet.InitServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
@@ -92,7 +92,7 @@
     <description></description>
     <display-name>LostPasswordServlet</display-name>
     <servlet-name>LostPasswordServlet</servlet-name>
-    <servlet-class>com.devoteam.springhibernate.servlet.LostPasswordServlet</servlet-class>
+    <servlet-class>bzh.msansm1.medek.servlet.LostPasswordServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
