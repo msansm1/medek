@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 d?c. 2012 15:14:50 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="bzh.msansm1.medek.persistence.model.tvshow.Tvshow" table="TVSHOW">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="title" type="java.lang.String">
+            <column name="TITLE" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="releaseDate" type="java.util.Date">
+            <column name="RELEASEDATE" />
+        </property>
+        <property name="cover" type="java.lang.String">
+            <column name="COVER" />
+        </property>
+        <property name="support" type="java.lang.Integer">
+            <column name="SUPPORT" />
+        </property>
+        <property name="genre" type="java.lang.Integer">
+            <column name="GENRE" />
+        </property>
+        <property name="length" type="java.lang.String">
+            <column name="LENGTH" />
+        </property>
+        <property name="season" type="java.lang.Integer">
+            <column name="SEASON" />
+        </property>
+        <property name="series" type="java.lang.String">
+            <column name="SERIES" />
+        </property>
+        <property name="isSerieDone" type="java.lang.Boolean">
+            <column name="ISSERIEDONE" />
+        </property>
+    </class>
+</hibernate-mapping>

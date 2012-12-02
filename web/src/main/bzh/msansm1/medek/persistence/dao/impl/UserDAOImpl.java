@@ -7,7 +7,6 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
 import bzh.msansm1.medek.persistence.dao.UserDAO;
-import bzh.msansm1.medek.persistence.model.User;
 
 /**
  * Implementation class of user DAO interface.

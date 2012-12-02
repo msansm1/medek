@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 d?c. 2012 15:14:50 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="bzh.msansm1.medek.persistence.model.tvshow.TvshowArtist"
+		table="TVSHOWARTIST">
+		<composite-id>
+			<key-property name="tvshow" type="java.lang.Integer">
+				<column name="TVSHOW" />
+			</key-property>
+			<key-property name="artist" type="java.lang.Integer">
+				<column name="ARTIST" />
+			</key-property>
+		</composite-id>
+		<property name="type" type="java.lang.Integer">
+			<column name="TYPE" />
+		</property>
+	</class>
+</hibernate-mapping>

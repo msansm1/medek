@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 d?c. 2012 15:24:12 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="bzh.msansm1.medek.persistence.model.book.Book" table="BOOK">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="title" type="java.lang.String">
+            <column name="TITLE" />
+        </property>
+        <property name="editor" type="java.lang.Integer">
+            <column name="EDITOR" />
+        </property>
+        <property name="collection" type="java.lang.Integer">
+            <column name="COLLECTION" />
+        </property>
+        <property name="cover" type="java.lang.String">
+            <column name="COVER" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="publicationDate" type="java.util.Date">
+            <column name="PUBLICATIONDATE" />
+        </property>
+        <property name="genre" type="java.lang.Integer">
+            <column name="GENRE" />
+        </property>
+        <property name="type" type="java.lang.Integer">
+            <column name="TYPE" />
+        </property>
+        <property name="lang" type="java.lang.Integer">
+            <column name="LANG" />
+        </property>
+        <property name="isSigned" type="java.lang.Boolean">
+            <column name="ISSIGNED" />
+        </property>
+        <property name="series" type="java.lang.String">
+            <column name="SERIES" />
+        </property>
+        <property name="bookNb" type="java.lang.Integer">
+            <column name="BOOKNB" />
+        </property>
+        <property name="isSerieDone" type="java.lang.Boolean">
+            <column name="ISSERIEDONE" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 d?c. 2012 15:44:23 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="bzh.msansm1.medek.persistence.model.users.UserBook"
+		table="USERBOOK">
+		<composite-id>
+			<key-property name="user" type="java.lang.Integer">
+				<column name="USER" />
+			</key-property>
+			<key-property name="book" type="java.lang.Integer">
+				<column name="BOOK" />
+			</key-property>
+		</composite-id>
+		<property name="rating" type="java.lang.Integer">
+			<column name="RATING" />
+		</property>
+		<property name="comment" type="java.lang.String">
+			<column name="COMMENT" />
+		</property>
+	</class>
+</hibernate-mapping>

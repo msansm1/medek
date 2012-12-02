@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
-<hibernate-mapping package="bzh.msansm1.medek.persistence.model">
-	<class name="Database" table="med_database">
-		<id name="id">
-			<generator class="native" />
-		</id>
-		<property name="version" type="string" length="45" />
-	</class>
-</hibernate-mapping> 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 d?c. 2012 15:24:12 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="bzh.msansm1.medek.persistence.model.common.Database" table="DATABASE">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="version" type="java.lang.String">
+            <column name="VERSION" />
+        </property>
+    </class>
+</hibernate-mapping>
