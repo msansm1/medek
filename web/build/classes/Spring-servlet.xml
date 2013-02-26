@@ -7,20 +7,11 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
  
-    <!-- 
-    ******************************************************
-    ***  Configuration file for unit testing only !!!  ***
-    ****************************************************** 
-    -->
- 
- 
- 
- 
     <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
  
     <!-- Scans within the base package of the application for @Components to configure as beans -->
     <!-- @Controller, @Service, @Configuration, etc. -->         
-    <context:component-scan base-package="com.devoteam.springhibernate" />
+    <context:component-scan base-package="bzh.msansm1.medek.persistence.dao" use-default-filters="true"/>
  	 
     <!-- Enables the Spring MVC @Controller programming model -->    
     <mvc:annotation-driven />
@@ -40,10 +31,16 @@
 	<!-- DataSource Definition -->
 	<bean id="dataDB" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName">
-			<value>org.h2.Driver</value>
+			<value>com.mysql.jdbc.Driver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:h2:mem</value>
+			<value>jdbc:mysql://localhost/meddb</value>
+		</property>
+		<property name="username">
+			<value>medek</value>
+		</property>
+		<property name="password">
+			<value>medek</value>
 		</property>
 	</bean>
 	<!-- Hibernate SessionFactory Definition -->
