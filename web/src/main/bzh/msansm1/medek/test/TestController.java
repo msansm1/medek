@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import bzh.msansm1.medek.model.Error;
-import bzh.msansm1.medek.persistence.DAOProxy;
+import bzh.msansm1.medek.persistence.dao.user.proxy.UserProxy;
 import bzh.msansm1.medek.spring.user.UserController;
 
 /**
@@ -26,7 +26,7 @@ public class TestController {
 	private static Logger logger = Logger.getLogger(TestController.class);
 	
 	@Resource
-	private DAOProxy daoProxy;
+	private UserProxy userProxy;
 	
 	private final String TESTPAGE = "/tester.jsp";
 		

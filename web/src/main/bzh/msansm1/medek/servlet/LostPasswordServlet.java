@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import bzh.msansm1.medek.persistence.DAOProxy;
-import bzh.msansm1.medek.persistence.model.User;
+import bzh.msansm1.medek.persistence.dao.user.proxy.UserProxy;
+import bzh.msansm1.medek.persistence.model.users.User;
 import bzh.msansm1.medek.utils.UserUtils;
 
 /**
@@ -26,7 +26,7 @@ public class LostPasswordServlet extends HttpServlet {
 	private static Logger logger = Logger.getLogger(LostPasswordServlet.class);
 	
 	@Resource
-	private DAOProxy daoProxy; 
+	private UserProxy userProxy;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,12 +36,12 @@ public class LostPasswordServlet extends HttpServlet {
 		String login = request.getParameter("name");
 
 		try {
-			User user = daoProxy.getUserByLogin(login);
+			User user = userProxy.getUserByLogin(login);
 			
 			String newpass = UserUtils.generatePassword();
 			user.setPassword(UserUtils.codingPassword(newpass));
 			
-			daoProxy.updateUser(user);
+			userProxy.updateUser(user);
 		} catch (Error e) {
 			logger.error("Error while reseting password: ", e);
 		}

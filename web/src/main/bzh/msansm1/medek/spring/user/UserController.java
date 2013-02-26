@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bzh.msansm1.medek.model.Error;
-import bzh.msansm1.medek.persistence.DAOProxy;
-import bzh.msansm1.medek.persistence.model.User;
+import bzh.msansm1.medek.persistence.dao.user.proxy.UserProxy;
+import bzh.msansm1.medek.persistence.model.users.User;
 import bzh.msansm1.medek.spring.MyController;
 import bzh.msansm1.medek.spring.json.JsonResponse;
 import bzh.msansm1.medek.spring.json.user.JsonUser;
@@ -37,7 +37,7 @@ public class UserController extends MyController {
 	private static Logger logger = Logger.getLogger(UserController.class);
 
 	@Resource
-	private DAOProxy daoProxy; 
+	private UserProxy userProxy;
 	
 	@RequestMapping( value="/srv/user/create" )	
 	public @ResponseBody JsonResponse newuser(Model model, HttpSession session , HttpServletRequest request,
@@ -48,7 +48,7 @@ public class UserController extends MyController {
 		user.setEmail(email);
 		String pass = UserUtils.generatePassword();
 		user.setPassword(UserUtils.codingPassword(pass));
-		daoProxy.createUser(user);
+		userProxy.createUser(user);
 		logger.info("=> CREATE User : "+login +" -- password : "+pass);
 		return new JsonUser(user.getId(), "", "", 
 				user.getEmail(), user.getLogin());
@@ -57,7 +57,7 @@ public class UserController extends MyController {
 	@RequestMapping( value="/srv/user/login" )	
 	public @ResponseBody JsonResponse loginuser(Model model, HttpSession session , HttpServletRequest request,
 			@RequestParam("login") String login, @RequestParam("pwd") String password) throws Error {
-		User user = daoProxy.getUserByLogin(login);
+		User user = userProxy.getUserByLogin(login);
 		logger.info("=> Login User : "+login +" -- ?? "+user);
 		if (user != null) {
 			logger.info("=> pass01  -- "+UserUtils.codingPassword(password));
@@ -77,7 +77,7 @@ public class UserController extends MyController {
 	@RequestMapping( value="/srv/user/get" )	
 	public @ResponseBody JsonResponse getuser(Model model, HttpSession session , HttpServletRequest request,
 			@RequestParam("id") Integer id) {
-		User user = daoProxy.getUserById(id);
+		User user = userProxy.getUserById(id);
 		logger.info("=> GET User : "+id);
 		return new JsonUser(user.getId(), "", "", 
 				user.getEmail(), user.getLogin());
@@ -86,12 +86,12 @@ public class UserController extends MyController {
 	@RequestMapping( value="/srv/user/update" )	
 	public @ResponseBody JsonResponse updateuser(Model model, HttpSession session , HttpServletRequest request,
 			@RequestParam("id") Integer id) {
-		User user = daoProxy.getUserById(id);
+		User user = userProxy.getUserById(id);
 		user.setLogin(request.getParameter("login"));
 		user.setEmail(request.getParameter("mail"));
 		String pass = UserUtils.generatePassword();
 		user.setPassword(UserUtils.codingPassword(pass));
-		daoProxy.updateUser(user);
+		userProxy.updateUser(user);
 		logger.info("=> UPDATE User : "+id);
 		return new JsonUser(user.getId(), "", "", 
 				user.getEmail(), user.getLogin());
@@ -131,7 +131,7 @@ public class UserController extends MyController {
 				filter += "u.email LIKE '%"+right+"%'"; 
 			}
 		}
-		List<User> users = daoProxy.getAllUsers(filter, sidx, sord);
+		List<User> users = userProxy.getAllUser(filter, sidx, sord);
 		List<JsonUser> infos = new ArrayList<JsonUser>();
 		for (int i=(page-1)*rows, max=page*rows; i<max; i++) {
 			if (i>=users.size()) {
@@ -150,7 +150,7 @@ public class UserController extends MyController {
 	@RequestMapping( value="/user/chpwd" )	
 	public String userchangepwd(HttpSession session , 
 			HttpServletRequest request, @RequestParam("login") String login) throws Error {
-		User user = daoProxy.getUserByLogin(login);
+		User user = userProxy.getUserByLogin(login);
 		if (user != null) {
 			String pass = UserUtils.generatePassword();
 			user.setPassword(UserUtils.codingPassword(pass));

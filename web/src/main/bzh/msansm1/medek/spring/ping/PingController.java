@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import bzh.msansm1.medek.persistence.model.User;
+import bzh.msansm1.medek.persistence.model.users.User;
 import bzh.msansm1.medek.spring.MyController;
 import bzh.msansm1.medek.spring.json.JsonResponse;
 import bzh.msansm1.medek.spring.json.user.JsonUser;
