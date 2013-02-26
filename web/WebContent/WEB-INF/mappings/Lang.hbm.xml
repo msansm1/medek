@@ -6,7 +6,7 @@
     <class name="bzh.msansm1.medek.persistence.model.common.Lang" table="LANG">
         <id name="id" type="java.lang.Integer">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="lang" type="java.lang.String">
             <column name="LANG" />

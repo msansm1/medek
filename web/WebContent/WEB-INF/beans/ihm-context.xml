@@ -21,7 +21,7 @@
 		<property name="locations">
 			<list>
 				<!--  <value>file:/opt/springhibernate/conf/ihm.properties</value> -->
-				 <value>classpath:ihm.properties</value>
+				 <value>conf/ihm.properties</value>
 			</list>
 		</property>
 	</bean>
