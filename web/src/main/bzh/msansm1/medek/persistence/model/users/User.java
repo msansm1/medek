@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -21,9 +22,11 @@ public class User implements Serializable{
 	private static final long serialVersionUID = -1435333130915759350L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String login;
+	private String firstname;
+	private String lastname;
 	private String password;
 	private String email;
 
@@ -31,10 +34,13 @@ public class User implements Serializable{
 		super();
 	}
 
-	public User(Integer id, String login, String password, String email){
+	public User(Integer id, String login, String firstname, String lastname,
+			String password, String email) {
 		super();
 		this.id = id;
 		this.login = login;
+		this.firstname = firstname;
+		this.lastname = lastname;
 		this.password = password;
 		this.email = email;
 	}
@@ -71,10 +77,27 @@ public class User implements Serializable{
 		this.email = email;
 	}
 
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", login=" + login + ", password=" + password
-				+ ", email=" + email + "]";
+		return "User [id=" + id + ", login=" + login + ", firstname="
+				+ firstname + ", lastname=" + lastname + ", password="
+				+ password + ", email=" + email + "]";
 	}
 
 	@Override
@@ -82,7 +105,11 @@ public class User implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result
+				+ ((firstname == null) ? 0 : firstname.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result
+				+ ((lastname == null) ? 0 : lastname.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
@@ -103,10 +130,20 @@ public class User implements Serializable{
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
+		if (firstname == null) {
+			if (other.firstname != null)
+				return false;
+		} else if (!firstname.equals(other.firstname))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (lastname == null) {
+			if (other.lastname != null)
+				return false;
+		} else if (!lastname.equals(other.lastname))
 			return false;
 		if (login == null) {
 			if (other.login != null)
